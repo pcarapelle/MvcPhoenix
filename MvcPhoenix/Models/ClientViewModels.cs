@@ -22,6 +22,8 @@ namespace MvcPhoenix.DataLayer
         public tblClient dbclient;
         public tblUser dbuser;
         
+        // hello
+
 
         public virtual foo barref { get; set; }
 
