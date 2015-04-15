@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CMCDataStoreContainer" CdmEntityContainer="CMCSQL03Entities1">
+    <EntitySetMapping Name="tblClients">
+      <EntityTypeMapping TypeName="CMCData.tblClient">
+        <MappingFragment StoreEntitySet="tblClient">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="LegacyID" ColumnName="LegacyID" />
+          <ScalarProperty Name="GlobalClientID" ColumnName="GlobalClientID" />
+          <ScalarProperty Name="ClientCode" ColumnName="ClientCode" />
+          <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+          <ScalarProperty Name="CMCLocation" ColumnName="CMCLocation" />
+          <ScalarProperty Name="CustomerReference" ColumnName="CustomerReference" />
+          <ScalarProperty Name="CMCLongCustomer" ColumnName="CMCLongCustomer" />
+          <ScalarProperty Name="MSDS" ColumnName="MSDS" />
+          <ScalarProperty Name="TDS" ColumnName="TDS" />
+          <ScalarProperty Name="COA" ColumnName="COA" />
+          <ScalarProperty Name="DocumentDirectory" ColumnName="DocumentDirectory" />
+          <ScalarProperty Name="MSDS_Folder" ColumnName="MSDS_Folder" />
+          <ScalarProperty Name="TDS_Folder" ColumnName="TDS_Folder" />
+          <ScalarProperty Name="COA_Folder" ColumnName="COA_Folder" />
+          <ScalarProperty Name="SP_ServiceSummary" ColumnName="SP_ServiceSummary" />
+          <ScalarProperty Name="SP_Detail1" ColumnName="SP_Detail1" />
+          <ScalarProperty Name="SP_Detail2" ColumnName="SP_Detail2" />
+          <ScalarProperty Name="SP_Detail3" ColumnName="SP_Detail3" />
+          <ScalarProperty Name="SP_Detail4" ColumnName="SP_Detail4" />
+          <ScalarProperty Name="SP_Detail5" ColumnName="SP_Detail5" />
+          <ScalarProperty Name="SP_RevDate" ColumnName="SP_RevDate" />
+          <ScalarProperty Name="SP_CommValue" ColumnName="SP_CommValue" />
+          <ScalarProperty Name="SP_COARequired" ColumnName="SP_COARequired" />
+          <ScalarProperty Name="SP_TDSRequired" ColumnName="SP_TDSRequired" />
+          <ScalarProperty Name="SP_MSDSLanguage" ColumnName="SP_MSDSLanguage" />
+          <ScalarProperty Name="SP_Freezable" ColumnName="SP_Freezable" />
+          <ScalarProperty Name="SP_LabelLanguage" ColumnName="SP_LabelLanguage" />
+          <ScalarProperty Name="SP_Expedite" ColumnName="SP_Expedite" />
+          <ScalarProperty Name="BOLComment" ColumnName="BOLComment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="CMCData.tblUser">
+        <MappingFragment StoreEntitySet="tblUser">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="LocationDefault" ColumnName="LocationDefault" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserLevel" ColumnName="UserLevel" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

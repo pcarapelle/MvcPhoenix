@@ -1,0 +1,374 @@
+﻿@model MvcPhoenix.Models.ServiceViewModels
+
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- container-fluid -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div>
+            <img src="~/Content/images/logos/acme.svg" style="float: right" alt="acme logo">
+        </div>
+        <div class="col-lg-12">
+            <h1 class="page-header">@ViewBag.Title <small>Tools</small></h1>
+        </div>
+    </div>
+    <!-- /.Page Heading -->
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <section id="orderexportreport">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-suitcase fa-fw"></i> Export Order Report</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group col-md-3">
+                                <label>Client</label>
+                                <select class="form-control">
+                                    <option>Select Client</option>
+                                    <option>Akzo Nobel</option>
+                                    <option>Clariant</option>
+                                    <option>DSM</option>
+                                    <option>Elementis</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Division</label>
+                                <select class="form-control">
+                                    <option>360</option>
+                                    <option>711</option>
+                                    <option>42D</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>From:</label>
+                                <input class="form-control" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>To:</label>
+                                <input class="form-control" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label>Tier:</label>
+                                <input class="form-control" placeholder="1">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Product Type:</label>
+                                <select class="form-control">
+                                    <option>Sample</option>
+                                    <option>Literature</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Include Pricing</label>
+                                <input type="checkbox" value="pricing">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-table fa-fw"></i> Load Data</button>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <button type="submit" class="btn btn-success btn-block"><i class="fa fa-cloud-download fa-fw"></i> Export Data</button>
+                            </div>
+                        </form>
+
+                        <div class="table-responsive col-md-12">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Order Date</th>
+                                        <th>Recipient</th>
+                                        <th>Address</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Country</th>
+                                        <th>Zip Code</th>
+                                        <th>Requestor's Name</th>
+                                        <th>Requestor's Phone</th>
+                                        <th>Order Notes</th>
+                                        <th>Line#</th>
+                                        <th>Item#</th>
+                                        <th>Item Description</th>
+                                        <th>Qty</th>
+                                        <th>Lot#</th>
+                                        <th>Carrier</th>
+                                        <th>Priority</th>
+                                        <th>Over Night Flag</th>
+                                        <th>Approval Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12/01/2015</td>
+                                        <td>River Valley Coatings</td>
+                                        <td>800 N. Highland Ave.</td>
+                                        <td>Aurora</td>
+                                        <td>IL</td>
+                                        <td>US</td>
+                                        <td>60506</td>
+                                        <td>Paul Mueller</td>
+                                        <td>630-621-5677</td>
+                                        <td>Lorem ipsum...</td>
+                                        <td>1</td>
+                                        <td>121485</td>
+                                        <td>BORCHI GOL</td>
+                                        <td>11</td>
+                                        <td>PQ123</td>
+                                        <td>UPS GROUND</td>
+                                        <td>High</td>
+                                        <td>True</td>
+                                        <td>Approved</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/01/2015</td>
+                                        <td>River Valley Coatings</td>
+                                        <td>800 N. Highland Ave.</td>
+                                        <td>Aurora</td>
+                                        <td>IL</td>
+                                        <td>US</td>
+                                        <td>60506</td>
+                                        <td>Paul Mueller</td>
+                                        <td>630-621-5677</td>
+                                        <td>Lorem ipsum...</td>
+                                        <td>2</td>
+                                        <td>121485</td>
+                                        <td>BORCHI GOL</td>
+                                        <td>11</td>
+                                        <td>PQ123</td>
+                                        <td>UPS GROUND</td>
+                                        <td>High</td>
+                                        <td>True</td>
+                                        <td>Approved</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/01/2015</td>
+                                        <td>River Valley Coatings</td>
+                                        <td>800 N. Highland Ave.</td>
+                                        <td>Aurora</td>
+                                        <td>IL</td>
+                                        <td>US</td>
+                                        <td>60506</td>
+                                        <td>Paul Mueller</td>
+                                        <td>630-621-5677</td>
+                                        <td>Lorem ipsum...</td>
+                                        <td>3</td>
+                                        <td>121485</td>
+                                        <td>BORCHI GOL</td>
+                                        <td>11</td>
+                                        <td>PQ123</td>
+                                        <td>UPS GROUND</td>
+                                        <td>High</td>
+                                        <td>True</td>
+                                        <td>Not Approved</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="shipmentreport">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-suitcase fa-fw"></i> Shipment Reports</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group col-md-3">
+                                <label>Client</label>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>Akzo Nobel</option>
+                                    <option>Clariant</option>
+                                    <option>DSM</option>
+                                    <option>Elementis</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Division</label>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>360</option>
+                                    <option>711</option>
+                                    <option>42D</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>From:</label>
+                                <input class="form-control" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>To:</label>
+                                <input class="form-control" placeholder="MM/DD/YYYY">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label>Tier:</label>
+                                <input class="form-control" placeholder="1">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Product Type:</label>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>Sample</option>
+                                    <option>Literature</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Report Type</label>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>Air Freight &amp; Truck</option>
+                                    <option>Daily Run</option>
+                                    <option>Product Activity</option>
+                                    <option>UPS</option>
+                                    <option>Marketing</option>
+                                    <option>Billing</option>
+                                    <option>Miscellaneous</option>
+                                    <option>Blacklist</option>
+                                    <option>Blank Div or OT</option>
+                                    <option>Document Copies</option>
+                                    <option>Follow Up</option>
+                                    <option>Open Orders</option>
+                                    <option>Open Orders by Prod</option>
+                                    <option>Return Orders</option>
+                                    <option>Survey Analysis</option>
+                                    <option>Tier Report</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="color: White">.</label>
+                                <button type="button" class="btn btn-primary btn-block"><i class="fa fa-table fa-fw"></i> Load Data</button>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="color: White">.</label>
+                                <button type="submit" class="btn btn-success btn-block"><i class="fa fa-cloud-download fa-fw"></i> Export Data</button>
+                            </div>
+                        </form>
+
+                        <div class="table-responsive col-md-12">
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Order Date</th>
+                                        <th>Order#</th>
+                                        <th>Type</th>
+                                        <th>Product Code</th>
+                                        <th>Product Name</th>
+                                        <th>Lot#</th>
+                                        <th>Qty</th>
+                                        <th>Size</th>
+                                        <th>Sample$</th>
+                                        <th>Recipient</th>
+                                        <th>Address</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>Country</th>
+                                        <th>Zip Code</th>
+                                        <th>Ship Date</th>
+                                        <th>Non CMC Delay</th>
+                                        <th>Via</th>
+                                        <th>Frt$</th>
+                                        <th>Frt Surchg</th>
+                                        <th>Tracking #</th>
+                                        <th>DH$</th>
+                                        <th>Other$</th>
+                                        <th>UN#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>12/01/2015</td>
+                                        <td>920335</td>
+                                        <td>W</td>
+                                        <td>35361</td>
+                                        <td>Double Take</td>
+                                        <td>AM3H01F004</td>
+                                        <td>1</td>
+                                        <td>1000ML</td>
+                                        <td>16.50</td>
+                                        <td>Columbia Ag Research</td>
+                                        <td>123 Main Street</td>
+                                        <td>Hood River</td>
+                                        <td>OR</td>
+                                        <td>97031</td>
+                                        <td>United States</td>
+                                        <td>12/02/2015</td>
+                                        <td><i class="fa fa-check fa-fw"></i></td>
+                                        <td>UPS SD</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1Z0972610279862628</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>UN3082, III</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12/01/2015</td>
+                                        <td>920335</td>
+                                        <td>W</td>
+                                        <td>35361</td>
+                                        <td>Double Take</td>
+                                        <td>AM3H01F004</td>
+                                        <td>1</td>
+                                        <td>1000ML</td>
+                                        <td>16.50</td>
+                                        <td>Columbia Ag Research</td>
+                                        <td>123 Main Street</td>
+                                        <td>Hood River</td>
+                                        <td>OR</td>
+                                        <td>97031</td>
+                                        <td>United States</td>
+                                        <td>12/02/2015</td>
+                                        <td><i class="fa fa-check fa-fw"></i></td>
+                                        <td>UPS SD</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>1Z0972610279862628</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>UN3082, III</td>
+                                    </tr>
+                                    <tr id="grandtotal">
+                                        <th></th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <th>Grand Totals:</th>
+                                        <td></td>
+                                        <th>2</th>
+                                        <td></td>
+                                        <th>33.00</th>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <th>0.00</th>
+                                        <th>0.00</th>
+                                        <td></td>
+                                        <th>0.00</th>
+                                        <th>0.00</th>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+</div>
+

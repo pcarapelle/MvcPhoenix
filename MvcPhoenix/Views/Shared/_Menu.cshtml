@@ -1,0 +1,48 @@
+﻿@{
+    var menus = new[]
+                {
+                   new { LinkText="Dashboard", ActionName="Index", ControllerName="Service", FaIconName="fa fa-fw fa-dashboard", Roles="All" },
+                   new { LinkText="New Order", ActionName="Order", ControllerName="Service", FaIconName="fa fa-fw fa-file-text-o", Roles="All" },
+                   new { LinkText="Edit Order", ActionName="Order", ControllerName="Service", FaIconName="fa fa-fw fa-pencil", Roles="All" },
+                   new { LinkText="Import Order", ActionName="ImportOrder", ControllerName="Service", FaIconName="fa fa-fw fa-cloud-upload", Roles="All" },
+                   new { LinkText="Product Profile", ActionName="ProductProfile", ControllerName="Service", FaIconName="fa fa-fw fa-wrench", Roles="All" },
+                   new { LinkText="Packout Status", ActionName="PackoutStatus", ControllerName="Service", FaIconName="fa fa-fw fa-clock-o", Roles="All" },
+                   new { LinkText="Report", ActionName="Report", ControllerName="Service", FaIconName="fa fa-fw fa-file-excel-o", Roles="All" }
+                };
+
+} 
+
+<ul id="menu" class="nav navbar-nav side-nav">
+    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+    {
+        String[] roles = Roles.GetRolesForUser();
+        var links = from item in menus
+                    where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                    .Any(x => roles.Contains(x) || x == "All")
+                    select item;
+
+        foreach (var link in links)
+        {
+            @:
+            <li>@Html.ActionLink(link.LinkText, link.ActionName, link.ControllerName)</li>
+        }
+    }
+    else
+    {
+        var links = from item in menus
+                    where item.Roles.Split(new String[] { "," }, StringSplitOptions.RemoveEmptyEntries)
+                    .Any(x => new String[] { "All", "Anonymous" }.Contains(x))
+                    select item;
+
+        foreach (var link in links)
+        {
+            @:
+            <li><a href="@Url.Action(link.ActionName, link.ControllerName )"><i class="@link.FaIconName"></i> @link.LinkText</a> </li>
+
+
+        }
+    }
+</ul>
+
+
+ 

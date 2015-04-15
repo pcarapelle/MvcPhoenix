@@ -1,0 +1,447 @@
+﻿@model MvcPhoenix.Models.ServiceViewModels
+
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- container-fluid -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div>
+            <img src="~/Content/images/logos/acme.svg" style="float: right" alt="acme logo">
+        </div>
+        <div class="col-lg-12">
+            <h1 class="page-header">@ViewBag.Title <small>New Order</small></h1>
+        </div>
+    </div>
+    <!-- /.Page Heading -->
+    <!-- Form -->
+    <form role="form">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <section id="clientinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><i class="fa fa-file-text-o fa-fw"></i> Client</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ClientName, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.ClientName, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ClientMktSeg, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.ClientMktSeg, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ClientOrderRef, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ClientOrderRef, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.OrderType, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.OrderType, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.OrderSrc, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.OrderSrc, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="shiptoinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#receiver"><i class="fa fa-file-text-o fa-fw"></i> Ship To Details</h3>
+                        </div>
+                        <div id="receiver" class="panel-body collapse">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RecipientName, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientName, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RecipientAttention, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientAttention, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RecipientEmail, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientEmail, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.RecipientPhone, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.RecipientPhone, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.RecipientFax, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.RecipientFax, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RecipientAddress, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientAddress, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RecipientCity, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientCity, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(m => m.RecipientState, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientState, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.RecipientZip, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientZip, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RecipientCountry, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RecipientCountry, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="requestorinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#requestor"><i class="fa fa-file-text-o fa-fw"></i> Requestor's Details</h3>
+                        </div>
+                        <div id="requestor" class="panel-body collapse">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(m => m.RequestorName, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RequestorName, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.RequestorEmail, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RequestorEmail, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.RequestorPhone, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RequestorPhone, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.RequestorFax, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.RequestorFax, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SalesRepName, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.SalesRepName, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SalesRepEmail, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.SalesRepEmail, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SalesRepTerritory, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.SalesRepTerritory, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SalesRepPhone, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.SalesRepPhone, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.MarketingRepName, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.MarketingRepName, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.MarketingRepEmail, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.MarketingRepEmail, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ApprovalNeeded, new { @class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.ApprovalNeeded)
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.Distributor, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.Distributor, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ApproverName, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ApproverName, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ApprovalDate, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ApprovalDate, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="productinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#product"><i class="fa fa-file-text-o fa-fw"></i> Product Items</h3>
+                        </div>
+                        <div id="product" class="panel-body collapse">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ProductName, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductName, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ClientBusUnit, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.ClientBusUnit, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ClientDivision, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.ClientDivision, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductCode, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductCode, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductXRefCode, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductXRefCode, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductLotNumber, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductLotNumber, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductQty, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductQty, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductSize, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductSize, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductSpecialReqSize, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductSpecialReqSize, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProductDelayReason, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductDelayReason, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="color: white">.</label>
+                                <button type="button" class="btn btn-primary btn-block">Add Item</button>
+                            </div>
+                            <div class="col-md-12"><hr></div>
+                            <div class="table-responsive col-md-12">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Product Code</th>
+                                            <th>Name</th>
+                                            <th>Lot Number</th>
+                                            <th>Quantity</th>
+                                            <th>Size</th>
+                                            <th>Weight</th>
+                                            <th>Unit Value</th>
+                                            <th>Delay Reason</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>181100</td>
+                                            <td>BECKOSOL 10-060</td>
+                                            <td>0000599634</td>
+                                            <td>1</td>
+                                            <td>GAL</td>
+                                            <td>2.5 kg</td>
+                                            <td>100</td>
+                                            <td>Not Applicable</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>181100</td>
+                                            <td>BECKOSOL 10-060</td>
+                                            <td>0000599634</td>
+                                            <td>1</td>
+                                            <td>GAL</td>
+                                            <td>2.5 kg</td>
+                                            <td>100</td>
+                                            <td>Not Applicable</td>
+                                        </tr>
+                                        <tr class="danger">
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>181100</td>
+                                            <td>BECKOSOL 10-060</td>
+                                            <td>0000599634</td>
+                                            <td>1</td>
+                                            <td>GAL</td>
+                                            <td>2.5 kg</td>
+                                            <td>100</td>
+                                            <td>Backorder</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>181100</td>
+                                            <td>BECKOSOL 10-060</td>
+                                            <td>0000599634</td>
+                                            <td>1</td>
+                                            <td>GAL</td>
+                                            <td>2.5 kg</td>
+                                            <td>100</td>
+                                            <td>Not Applicable</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="orderchargeinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#ordercharge"><i class="fa fa-file-text-o fa-fw"></i> Order Charges</h3>
+                        </div>
+                        <div id="ordercharge" class="panel-body collapse">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.OrderChargeCode, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.OrderChargeCode, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.OrderChargeDesc, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.OrderChargeDesc, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.OrderChargeType, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.OrderChargeType, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.OrderChargeLinkObj, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.OrderChargeLinkObj, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="color: white">.</label>
+                                <button type="button" class="btn btn-primary btn-block">Add Charge</button>
+                            </div>
+                            <div class="col-md-12"><hr></div>
+                            <div class="table-responsive col-md-12">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Charge Code</th>
+                                            <th>Charge Name</th>
+                                            <th>Charge Type</th>
+                                            <th>Charge Cost($)</th>
+                                            <th>Linked Object</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>CHG-ADMIN</td>
+                                            <td>Manual Entry</td>
+                                            <td>Doc & Handling</td>
+                                            <td>20</td>
+                                            <td>Product Line 2</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="shipmentsinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#shipment"><i class="fa fa-file-text-o fa-fw"></i> Shipments</h3>
+                        </div>
+                        <div id="shipment" class="panel-body collapse">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ShipCarrierPref, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipCarrierPref, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ShipCarrierCollectAcct, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipCarrierCollectAcct, new { @class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="specialinstructinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#specialinstructions"><i class="fa fa-file-text-o fa-fw"></i> Special Instructions</h3>
+                        </div>
+                        <div id="specialinstructions" class="panel-body collapse">
+                            <div class="form-group col-md-12">
+                                @Html.LabelFor(m => m.SpecialInstruct, new { @class = "control-label"})
+                                @Html.TextAreaFor(m => m.SpecialInstruct, new { @class = "form-control", @rows = 10})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="lognoteInfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#lognote"><i class="fa fa-file-text-o fa-fw"></i> Log Notes</h3>
+                        </div>
+                        <div id="lognote" class="panel-body collapse">
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.LogCannedNote, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.LogCannedNote, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.LogAddNotes, new { @class = "control-label"})
+                                @Html.TextBoxFor(m => m.LogAddNotes, new { @class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Attach File</label>
+                                <input type="file">
+                            </div>
+                            <div class="col-md-12"><hr></div>
+                            <div class="table-responsive col-md-12">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Date</th>
+                                            <th>Type</th>
+                                            <th>User</th>
+                                            <th>Note</th>
+                                            <th>Additional Note</th>
+                                            <th>File</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <th>12/01/2015 12:59:00</th>
+                                            <th>User</th>
+                                            <th>Bill V.</th>
+                                            <td>This is a canned note 3</td>
+                                            <td>Additional preferences for desired flavor of new recipe. Te nibh docendi mea, has et possim intellegat.</td>
+                                            <td><i class="fa fa-file-text-o fa-fw"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: gray"></i></td>
+                                            <th>12/01/2015 12:59:00</th>
+                                            <th>System</th>
+                                            <th>Auto</th>
+                                            <td>This is a system generated note</td>
+                                            <td>Lorem ipsum dolor sit amet, id verear probatus tincidunt ius.</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="form-group col-md-3">
+                    <button type="submit" class="btn btn-success btn-block">Submit Order</button>
+                </div>
+                <div class="form-group col-md-3">
+                    <button type="reset" class="btn btn-danger btn-block">Cancel Order</button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <!-- End Form -->
+</div>
+<!-- End container-fluid -->

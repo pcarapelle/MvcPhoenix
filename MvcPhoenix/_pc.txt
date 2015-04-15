@@ -1,0 +1,14 @@
+﻿_pc.txt
+
+
+Github.com Repos:
+
+https://github.com/pcarapelle/MvcPhoenix2.git
+
+https://github.com/1feanyi/MvcPhoenix2.git
+
+myDataContext.tblClients.Attach(c.DBClient);
+myDataContext.Entry(c.DBClient).State = System.Data.Entity.EntityState.Modified;
+myDataContext.SaveChanges();
+
+

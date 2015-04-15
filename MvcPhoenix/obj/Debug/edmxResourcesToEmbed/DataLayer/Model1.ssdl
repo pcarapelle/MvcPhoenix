@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMCData.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblClient">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LegacyID" Type="int" />
+    <Property Name="GlobalClientID" Type="int" />
+    <Property Name="ClientCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="ClientName" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMCLocation" Type="nvarchar" MaxLength="2" />
+    <Property Name="CustomerReference" Type="nvarchar" MaxLength="4" />
+    <Property Name="CMCLongCustomer" Type="nvarchar" MaxLength="50" />
+    <Property Name="MSDS" Type="bit" />
+    <Property Name="TDS" Type="bit" />
+    <Property Name="COA" Type="bit" />
+    <Property Name="DocumentDirectory" Type="nvarchar" MaxLength="100" />
+    <Property Name="MSDS_Folder" Type="nvarchar" MaxLength="100" />
+    <Property Name="TDS_Folder" Type="nvarchar" MaxLength="100" />
+    <Property Name="COA_Folder" Type="nvarchar" MaxLength="100" />
+    <Property Name="SP_ServiceSummary" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SP_Detail1" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SP_Detail2" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SP_Detail3" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SP_Detail4" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SP_Detail5" Type="nvarchar" MaxLength="4000" />
+    <Property Name="SP_RevDate" Type="date" />
+    <Property Name="SP_CommValue" Type="nvarchar" MaxLength="20" />
+    <Property Name="SP_COARequired" Type="nvarchar" MaxLength="50" />
+    <Property Name="SP_TDSRequired" Type="nvarchar" MaxLength="50" />
+    <Property Name="SP_MSDSLanguage" Type="nvarchar" MaxLength="75" />
+    <Property Name="SP_Freezable" Type="nvarchar" MaxLength="50" />
+    <Property Name="SP_LabelLanguage" Type="nvarchar" MaxLength="50" />
+    <Property Name="SP_Expedite" Type="nvarchar" MaxLength="255" />
+    <Property Name="BOLComment" Type="nvarchar" MaxLength="4000" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationDefault" Type="nvarchar" MaxLength="2" />
+    <Property Name="Location" Type="nvarchar" MaxLength="2" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="4" />
+    <Property Name="UserLevel" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="CMCDataStoreContainer">
+    <EntitySet Name="tblClient" EntityType="Self.tblClient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

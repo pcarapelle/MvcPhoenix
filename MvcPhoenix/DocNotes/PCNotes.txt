@@ -1,0 +1,13 @@
+﻿PCNotes.txt 
+File used by phil to keep notes to himself
+
+4/8/2015
+-Client.cs
+-excluded .vb files
+-DBADO.cs
+
+4/9/2015
+
+4/10/2015
+
+

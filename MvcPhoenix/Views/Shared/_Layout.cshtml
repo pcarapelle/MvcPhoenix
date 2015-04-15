@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Phoenix/CMC SiMPLE</title>
+    @Styles.Render("~/bundles/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        <!--Begin: Top-banner and Navigation-->
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Phoenix/SiMPLE", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <!-- Top Navigation Menu using razor actions
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+            -->
+            <!--Begin: Top Navigation Menu Items-->
+            <div class="navbar-collapse nav">
+                <ul class="nav navbar-right top-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                        <ul class="dropdown-menu message-dropdown">
+                            <li class="message-preview">
+                                <a href="#">
+                                    <div class="media">
+                                        <span class="pull-left">
+                                            <img class="media-object" src="http://placehold.it/50x50" alt="placeholder">
+                                        </span>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <strong>John Smith</strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <div class="media">
+                                        <span class="pull-left">
+                                            <img class="media-object" src="http://placehold.it/50x50" alt="placeholder">
+                                        </span>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <strong>John Smith</strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <div class="media">
+                                        <span class="pull-left">
+                                            <img class="media-object" src="http://placehold.it/50x50" alt="placeholder">
+                                        </span>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <strong>John Smith</strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="message-footer">
+                                <a href="#">Read All New Messages</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                        <ul class=" alert dropdown-menu alert-dropdown">
+                            <li>
+                                <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                            </li>
+                            <li>
+                                <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                            </li>
+                            <li>
+                                <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">View All</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="/profile.html"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="/logout.html"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Link to Authentication Partial for Register/Log in-->
+                @Html.Partial("_LoginPartial")
+            </div>
+            <!--End: Top Navigation Menu Items-->
+
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <!--
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="order.html"><i class="fa fa-fw fa-file"></i> New Orders</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#reports"><i class="fa fa-fw fa-desktop"></i> Reports <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="reports" class="collapse">
+                            <li>
+                                <a href="rpt_orders.html"><i class="fa fa-fw fa-file"></i> Order Report</a>
+                            </li>
+                            <li>
+                                <a href="rpt_replenishment.html"><i class="fa fa-fw fa-cloud-upload"></i> Replenishment Report</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="prod_profiles.html"><i class="fa fa-fw fa-search"></i> Product Profiles</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#utilities"><i class="fa fa-fw fa-arrows-v"></i> Utilities <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="utilities" class="collapse">
+                            <li>
+                                <a href="user_mgmt.html"><i class="fa fa-fw fa-lock"></i> User Management</a>
+                            </li>
+                            <li>
+                                <a href="approve_order.html"><i class="fa fa-fw fa-lock"></i> Approve Orders</a>
+                            </li>
+                            <li>
+                                <a href="http://www.mysamplecenter.com/PortalDocumentsMSDS.aspx" target="_blank"><i class="fa fa-fw fa-cogs"></i> MSDS Catalog</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                -->
+
+                @if (Session["MyMenu"] == null)
+                {
+                    Session["MyMenu"] = Html.Partial("~/Views/Shared/_Menu.cshtml");
+                }
+                @Session["MyMenu"]
+
+            </div>
+            <!-- End Sidebar Menu Items -->
+
+        </div>
+        <!--End: Top-banner and Navigation-->
+        <!-- Begin: Generate View Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                    <div class="row">
+                        <footer class="col-lg-12">
+                            <p>&copy; @DateTime.Now.Year - CMC SiMPLE (Sampling Intelligent/Inventory Management &amp; Packaging Logistics Environment)</p>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End: Generate View Content -->
+
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

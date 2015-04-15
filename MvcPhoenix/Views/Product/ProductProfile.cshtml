@@ -1,0 +1,815 @@
+﻿@model MvcPhoenix.Models.ProductViewModels
+
+@{
+    ViewBag.Title = "Product Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- container-fluid -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+        <div>
+            <img src="~/Content/images/logos/acme.svg" style="float: right" alt="acme logo">
+        </div>
+        <div class="col-lg-12">
+            <h1 class="page-header">@ViewBag.Title <small>Sample Product Guide</small></h1>
+        </div>
+    </div>
+    <!-- /.Page Heading -->
+    <!-- Form -->
+    <form role="form">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <section id="productsearch">
+                    <div class="form-group col-md-12">
+                        <input type="search" class="form-control" placeholder="Product Search...">
+                    </div>
+                </section>
+
+                <section id="productidinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#prodid"><i class="fa fa-file-text-o fa-fw"></i> Product Identification</h3>
+                        </div>
+                        <div id="prodid" class="panel-body">
+                            <label id="discontinued" class="col-md-12 collapse form-control" style="background-color: red; color: white"> Discontinued Product</label>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ClientName, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ClientName, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ClientDivision, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.ClientDivision, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ClientBusUnit, new { @class = "control-label" })
+                                @Html.TextBoxFor(m => m.ClientBusUnit, new { @class = "form-control" })
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ProductXRefList, new {@class = "control-label"})<br />
+                                <textarea rows="5" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ProfileRevDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProfileRevDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.MSDSRevDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.MSDSRevDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.LabelRevDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.LabelRevDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.CheckBoxFor(m => m.GlobalProductOpt)
+                                @Html.LabelFor(m => m.GlobalProductOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.AccuracyVerifiedOpt)
+                                @Html.LabelFor(m => m.AccuracyVerifiedOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.DiscontinuedOpt)
+                                @Html.LabelFor(m => m.DiscontinuedOpt, new {@class = "control-label"})
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ProductCode, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductCode, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ProductName, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductName, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ProductEquivalence, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductEquivalence, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ProductShelfLife, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductShelfLife, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ProductHazardClass, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductHazardClass, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ProductSG, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductSG, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ProductDensity, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductDensity, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ProductPHVal, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductPHVal, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-8">
+                                @Html.LabelFor(m => m.PackagePartNumber, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.PackagePartNumber, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(m => m.ProductRestrictedQty, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ProductRestrictedQty, new {@class = "form-control"})
+                            </div>
+                            <div class="table-responsive col-md-12">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Part Number</th>
+                                            <th>Size</th>
+                                            <th>Weight</th>
+                                            <th>Package</th>
+                                            <th>DOT Spec</th>
+                                            <th>UN Spec</th>
+                                            <th>Torque</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>CMC-84</td>
+                                            <td>QT</td>
+                                            <td></td>
+                                            <td>Plastic, Round, 38MM, Black Teflon Cap</td>
+                                            <td>2E</td>
+                                            <td>1H2/Y23/S</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>CMC-84</td>
+                                            <td>GAL</td>
+                                            <td></td>
+                                            <td>Plastic, Round, 38MM, Black Teflon Cap</td>
+                                            <td>2E</td>
+                                            <td>1H2/Y23/S</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>CMC-84</td>
+                                            <td>5GAL</td>
+                                            <td></td>
+                                            <td>Plastic, Round, 38MM, Black Teflon Cap</td>
+                                            <td>2E</td>
+                                            <td>1H2/Y23/S</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="specialhandlinginfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#special"><i class="fa fa-file-text-o fa-fw"></i> Special Handling & Storage</h3>
+                        </div>
+                        <div id="special" class="panel-body collapse">
+                            <div class="form-group col-md-3">
+                                @Html.CheckBoxFor(m => m.SHCleanRoomGMPOpt)
+                                @Html.LabelFor(m => m.SHCleanRoomGMPOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHNitrogenBlanketOpt)
+                                @Html.LabelFor(m => m.SHNitrogenBlanketOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHMoistureSensitiveOpt)
+                                @Html.LabelFor(m => m.SHMoistureSensitiveOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHMixWellOpt)
+                                @Html.LabelFor(m => m.SHMixWellOpt, new {@class = "control-label"})<br />
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.CheckBoxFor(m => m.SHNoPackOverRhOpt)
+                                @Html.LabelFor(m => m.SHNoPackOverRhOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHFlammableGroundOpt)
+                                @Html.LabelFor(m => m.SHFlammableGroundOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHTorqueOpt)
+                                @Html.LabelFor(m => m.SHTorqueOpt, new {@class = "control-label"})<br />
+                                @Html.LabelFor(m => m.SHTorqueInp, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHTorqueInp)
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.SHFlashPointInp, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHFlashPointInp)<br />
+                                @Html.CheckBoxFor(m => m.SHSpecialBlendOpt)
+                                @Html.LabelFor(m => m.SHSpecialBlendOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHHeatFillingOpt)
+                                @Html.LabelFor(m => m.SHHeatFillingOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHFreezerStorageOpt)
+                                @Html.LabelFor(m => m.SHFreezerStorageOpt, new {@class = "control-label"})<br />
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.CheckBoxFor(m => m.SHRefridgeStorageOpt)
+                                @Html.LabelFor(m => m.SHRefridgeStorageOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.SHFlammableStorageOpt)
+                                @Html.LabelFor(m => m.SHFlammableStorageOpt, new {@class = "control-label"})<br />
+                                <b>Req By:</b>
+                                @Html.CheckBoxFor(m => m.SHReqByClientOpt)
+                                @Html.LabelFor(m => m.SHReqByClientOpt, new {@class = "control-label"})
+                                @Html.CheckBoxFor(m => m.SHReqByCMCOpt)
+                                @Html.LabelFor(m => m.SHReqByCMCOpt, new {@class = "control-label"})
+                                <br />
+                                @Html.LabelFor(m => m.SHOtherStorage, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHOtherStorage)
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SHHeatingInstructions, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHHeatingInstructions, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SHMixingInstructions, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHMixingInstructions, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SHOtherInstructions, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHOtherInstructions, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SHShippingSOP, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHShippingSOP, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SHNormalAppearance, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHNormalAppearance, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SHRejectionCriterion, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SHRejectionCriterion, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th style="background-color: yellow">@Html.LabelFor(m => m.SHRightToKnowOpt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHRightToKnowOpt)</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="background-color: yellow">@Html.LabelFor(m => m.SHFireListOpt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHFireListOpt)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th style="background-color: yellow">@Html.LabelFor(m => m.SHFreezeListOpt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHFreezeListOpt)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th style="background-color: yellow">@Html.LabelFor(m => m.SHSARAOpt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHSARAOpt)</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="background-color: green; color: white">@Html.LabelFor(m => m.SHSARA313Opt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHSARA313Opt)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th style="background-color: purple; color: white">@Html.LabelFor(m => m.SHSARA302Opt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHSARA302Opt)</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="background-color: red; color: white">@Html.LabelFor(m => m.SHEPABiocideOpt, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">@Html.CheckBoxFor(m => m.SHEPABiocideOpt)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="healthsafetyinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#health"><i class="fa fa-file-text-o fa-fw"></i> Health & Safety</h3>
+                        </div>
+                        <div id="health" class="panel-body collapse">
+                            <div class="form-group col-md-3">
+                                <label>Equipment</label>
+                                <br />
+                                @Html.CheckBoxFor(m => m.HSEquipHoodOpt)
+                                @Html.LabelFor(m => m.HSEquipHoodOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipSafetyGlassOpt)
+                                @Html.LabelFor(m => m.HSEquipSafetyGlassOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipGlovesOpt)
+                                @Html.LabelFor(m => m.HSEquipGlovesOpt, new {@class = "control-label"})<br />
+                                @Html.TextBoxFor(m => m.HSEquipGloveType, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipBootiesOpt)
+                                @Html.LabelFor(m => m.HSEquipBootiesOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipCleanRoomOpt)
+                                @Html.LabelFor(m => m.HSEquipCleanRoomOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipApronOpt)
+                                @Html.LabelFor(m => m.HSEquipApronOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipArmSleevesOpt)
+                                @Html.LabelFor(m => m.HSEquipArmSleevesOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipHalfMaskOpt)
+                                @Html.LabelFor(m => m.HSEquipHalfMaskOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipFullMaskOpt)
+                                @Html.LabelFor(m => m.HSEquipFullMaskOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipFullSuitOpt)
+                                @Html.LabelFor(m => m.HSEquipFullSuitOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEquipOtherOpt)
+                                @Html.LabelFor(m => m.HSEquipOtherOpt, new {@class = "control-label"})<br />
+                                @Html.TextBoxFor(m => m.HSEquipOtherInp)
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Health Hazards</label>
+                                <br />
+                                @Html.CheckBoxFor(m => m.HSHealthToxicOpt)
+                                @Html.LabelFor(m => m.HSHealthToxicOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSHealthHighToxicOpt)
+                                @Html.LabelFor(m => m.HSHealthHighToxicOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSHealthReprodToxinOpt)
+                                @Html.LabelFor(m => m.HSHealthReprodToxinOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSHealthCorrosiveHzdOpt)
+                                @Html.LabelFor(m => m.HSHealthCorrosiveHzdOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSHealthSensitizerOpt)
+                                @Html.LabelFor(m => m.HSHealthSensitizerOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSHealthCarcinogenOpt)
+                                @Html.LabelFor(m => m.HSHealthCarcinogenOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSHealthIrritantOpt)
+                                @Html.LabelFor(m => m.HSHealthIrritantOpt, new {@class = "control-label"})<br />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Routes of Entry</label>
+                                <br />
+                                @Html.CheckBoxFor(m => m.HSEntryIngestionOpt)
+                                @Html.LabelFor(m => m.HSEntryIngestionOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEntryInhalationOpt)
+                                @Html.LabelFor(m => m.HSEntryInhalationOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEntrySkinOpt)
+                                @Html.LabelFor(m => m.HSEntrySkinOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSEntryEyeOpt)
+                                @Html.LabelFor(m => m.HSEntryEyeOpt, new {@class = "control-label"})<br />
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label>Physical Hazards</label>
+                                <br />
+                                @Html.CheckBoxFor(m => m.HSPhysCombustibleOpt)
+                                @Html.LabelFor(m => m.HSPhysCombustibleOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysCorrosiveOpt)
+                                @Html.LabelFor(m => m.HSPhysCorrosiveOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysFlammableOpt)
+                                @Html.LabelFor(m => m.HSPhysFlammableOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysOxidizerOpt)
+                                @Html.LabelFor(m => m.HSPhysOxidizerOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysReactiveOpt)
+                                @Html.LabelFor(m => m.HSPhysReactiveOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysToxicOpt)
+                                @Html.LabelFor(m => m.HSPhysToxicOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysPeroxideOpt)
+                                @Html.LabelFor(m => m.HSPhysPeroxideOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.HSPhysPolymerHzdOpt)
+                                @Html.LabelFor(m => m.HSPhysPolymerHzdOpt, new {@class = "control-label"})<br />
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                            <div class="form-group col-md-3">
+                                <label>HMIS Ratings</label>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th style="background-color: blue; color: white">@Html.LabelFor(m => m.HMISHealth, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">1</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="background-color: red; color: white">@Html.LabelFor(m => m.HMISFlammability, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">3</th>
+                                        </tr>
+                                        <tr>
+                                            <th style="background-color: yellow">@Html.LabelFor(m => m.HMISReactivity, new {@class = "control-label"})</th>
+                                            <th style="text-align: center">0</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-group col-md-9">
+                                <label>Target Organ Effects</label>
+                                <br />
+                                @Html.CheckBoxFor(m => m.TOENephrotoxinsOpt)
+                                @Html.LabelFor(m => m.TOENephrotoxinsOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOENeurotoxinsOpt)
+                                @Html.LabelFor(m => m.TOENeurotoxinsOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOEHermatopoieticsOpt)
+                                @Html.LabelFor(m => m.TOEHermatopoieticsOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOEReproductiveOpt)
+                                @Html.LabelFor(m => m.TOEReproductiveOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOEHepatotoxinsOpt)
+                                @Html.LabelFor(m => m.TOEHepatotoxinsOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOEPulmonaryOpt)
+                                @Html.LabelFor(m => m.TOEPulmonaryOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOECutaneousOpt)
+                                @Html.LabelFor(m => m.TOECutaneousOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TOEEyeHazardOpt)
+                                @Html.LabelFor(m => m.TOEEyeHazardOpt, new {@class = "control-label"})<br />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="ghsinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#ghs"><i class="fa fa-file-text-o fa-fw"></i> GHS Information</h3>
+                        </div>
+                        <div id="ghs" class="panel-body collapse">
+                            <div class="form-group col-md-3">
+                                <label>P & H Statements</label>
+                                <input class="form-control" placeholder="Search for statements"><br />
+                                <button type="button" class="btn btn-info btn-block">Update P&H Data</button>
+                            </div>
+                            <div class="form-group table-responsive col-md-9">
+                                <table class="table table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <th></th>
+                                            <th>Label Exclude</th>
+                                            <th>P & H Code</th>
+                                            <th>Language</th>
+                                            <th>Statement</th>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td><input type="checkbox"></td>
+                                            <td>H226</td>
+                                            <td>EN</td>
+                                            <td>IF ON SKIN (or hair): Remove/take off immediately all contaminated clothing. Rinse skin with water/shower.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td><input type="checkbox"></td>
+                                            <td>H302</td>
+                                            <td>EN</td>
+                                            <td>Harmful if swallowed</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.CheckBoxFor(m => m.GHSReadyOpt)
+                                @Html.LabelFor(m => m.GHSReadyOpt, new {@class = "control-label"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.GHSSignalWord, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.GHSSignalWord, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.GHSSymbol1, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.GHSSymbol1, new {@class = "form-control"})<br />
+                                @Html.LabelFor(m => m.GHSSymbol2, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.GHSSymbol2, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.GHSSymbol3, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.GHSSymbol3, new {@class = "form-control"})<br />
+                                @Html.LabelFor(m => m.GHSSymbol4, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.GHSSymbol4, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="msdsinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#msds"><i class="fa fa-file-text-o fa-fw"></i> MSDS Information</h3>
+                        </div>
+                        <div id="msds" class="panel-body collapse">
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.MSDSRevDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.MSDSRevDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.MSDSRevNum, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.MSDSRevNum, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.MSDSOtherNum, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.MSDSOtherNum, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label style="color: white">.</label>
+                                <button type="button" class="btn btn-info btn-block">Open SDS PDF</button>
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SDSContactName, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SDSContactName, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.SDSContactPhone, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.SDSContactPhone, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.LabelRevDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.LabelRevDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.LabelNumber, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.LabelNumber, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.LabelContactName, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.LabelContactName, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.LabelContactPhone, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.LabelContactPhone, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.TechSheetAttachOpt, new {@class = "control-label"})<br />
+                                @Html.CheckBoxFor(m => m.TechSheetAttachOpt)
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.TechSheetRevDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.TechSheetRevDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.ChinaTestCertDate, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ChinaTestCertDate, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.LabelFor(m => m.MSDSReturnLoc, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.MSDSReturnLoc, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="shippinginfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#shipping"><i class="fa fa-file-text-o fa-fw"></i> Shipping Description</h3>
+                        </div>
+                        <div id="shipping" class="panel-body collapse">
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ShipEmergContactNum, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipEmergContactNum, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ShipEndUse, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipEndUse, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-2">
+                                @Html.LabelFor(m => m.ShipHarmonizedCode, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipHarmonizedCode, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-4">
+                                @Html.LabelFor(m => m.ShipChemicalName, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipChemicalName, new {@class = "form-control"})
+                            </div>
+                            <div class="form-group col-md-6">
+                                @Html.LabelFor(m => m.ShipLabelNotes, new {@class = "control-label"})
+                                @Html.TextBoxFor(m => m.ShipLabelNotes, new {@class = "form-control"})
+                            </div>
+                            <div role="tabpanel">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#ground" role="tab" data-toggle="tab" style="background-color: gold">Ground</a></li>
+                                    <li role="presentation"><a href="#air-freight" role="tab" data-toggle="tab" style="background-color: blue; color: white">Air Freight</a></li>
+                                    <li role="presentation"><a href="#rcra" role="tab" data-toggle="tab">RCRA</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane active" id="ground">
+                                        <div style="background-color: gold" class="panel-body">
+                                            <h3>Ground</h3>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(m => m.GrdShipName, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdShipName, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(m => m.GrdNOSName, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdNOSName, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.GrdHzdClass, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdHzdClass, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.GrdPackagingGrp, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdPackagingGrp, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.GrdSubClass, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdSubClass, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.GrdUNNumber, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdUNNumber, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.GrdLabelReqd, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdLabelReqd, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.GrdSubLabelReqd, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.GrdSubLabelReqd, new {@class = "form-control"})
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="air-freight">
+                                        <div style="background-color: blue; color: white" class="panel-body">
+                                            <h3>Air Freight</h3>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(m => m.AirShipName, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirShipName, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(m => m.AirNOSName, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirNOSName, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.AirHzdClass, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirHzdClass, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.AirPackagingGrp, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirPackagingGrp, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.AirSubClass, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirSubClass, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.AirUNNumber, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirUNNumber, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.AirLabelReqd, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirLabelReqd, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.AirSubLabelReqd, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.AirSubLabelReqd, new {@class = "form-control"})
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane" id="rcra">
+                                        <div class="panel-body">
+                                            <h3>RCRA Shipping Description</h3>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(m => m.RCRAShipName, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRAShipName, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                @Html.LabelFor(m => m.RCRANOSName, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRANOSName, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.RCRAHzdClass, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRAHzdClass, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.RCRAPackagingGrp, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRAPackagingGrp, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.RCRASubClass, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRASubClass, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.RCRAUNNumber, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRAUNNumber, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.RCRALabelReqd, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRALabelReqd, new {@class = "form-control"})
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                @Html.LabelFor(m => m.RCRASubLabelReqd, new {@class = "control-label"})
+                                                @Html.TextBoxFor(m => m.RCRASubLabelReqd, new {@class = "form-control"})
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="notesinfo">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title" data-toggle="collapse" data-target="#notes"><i class="fa fa-file-text-o fa-fw"></i> Notes</h3>
+                        </div>
+                        <div id="notes" class="panel-body collapse">
+                            <div class="form-group col-md-12">
+                                <label>Notes | </label>
+                                <label><a href="#">Add New Note</a></label>
+                                <div class="form-group table-responsive col-md-12">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>Delete</th>
+                                            <th>Date</th>
+                                            <th>Product Code</th>
+                                            <th>Notes</th>
+                                            <th>Reason Code</th>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>@Html.TextBoxFor(m => m.NotesDate, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.NotesProdCode, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.NotesProdNote, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.NotesReasonCode, new {@class = "form-control"})</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label>CAS | </label>
+                                <label><a href="#">Add New CAS</a></label>
+                                <div class="form-group table-responsive col-md-12">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>Delete</th>
+                                            <th>CAS Number</th>
+                                            <th>Chemical Name</th>
+                                            <th>Less Than</th>
+                                            <th>Percentage</th>
+                                            <th>Restricted Qty</th>
+                                            <th>Restricted Amt</th>
+                                            <th>Pack on Receipt</th>
+                                            <th>Reportable Qty</th>
+                                            <th>Reportable Amt</th>
+                                            <th>Exclude From Label</th>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>@Html.TextBoxFor(m => m.CASNumber, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.CASChemicalName, new {@class = "form-control"})</td>
+                                            <td>@Html.CheckBoxFor(m => m.CASLessThanOpt)</td>
+                                            <td>@Html.TextBoxFor(m => m.CASPercentage, new {@class = "form-control"})</td>
+                                            <td>@Html.CheckBoxFor(m => m.CASRestQtyOpt)</td>
+                                            <td>@Html.TextBoxFor(m => m.CASRestAmt, new {@class = "form-control"})</td>
+                                            <td>@Html.CheckBoxFor(m => m.CASPackRecieptOpt)</td>
+                                            <td>@Html.CheckBoxFor(m => m.CASReportableQtyOpt)</td>
+                                            <td>@Html.TextBoxFor(m => m.CASReportableAmount, new {@class = "form-control"})</td>
+                                            <td>@Html.CheckBoxFor(m => m.CASExLabelOpt)</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-9">
+                                <label>Waste Profile | </label>
+                                <label><a href="#">Add New Waste Code</a></label>
+                                <div class="form-group table-responsive col-md-12">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>Delete</th>
+                                            <th>Waste Code</th>
+                                            <th>Client</th>
+                                            <th>Division</th>
+                                            <th>Product Code</th>
+                                        </tr>
+                                        <tr>
+                                            <td><i class="fa fa-minus-circle fa-fw" style="color: red"></i></td>
+                                            <td>@Html.TextBoxFor(m => m.WasteCode, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.WasteClient, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.WasteBusinessUnit, new {@class = "form-control"})</td>
+                                            <td>@Html.TextBoxFor(m => m.WasteProductCode, new {@class = "form-control"})</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3">
+                                @Html.CheckBoxFor(m => m.WasteEPAOpt)
+                                @Html.LabelFor(m => m.WasteEPAOpt)<br />
+                                @Html.CheckBoxFor(m => m.WasteNonRCRAOpt)
+                                @Html.LabelFor(m => m.WasteNonRCRAOpt)<br />
+                                @Html.LabelFor(m => m.WasteProfileNum)
+                                @Html.TextBoxFor(m => m.WasteProfileNum, new {@class = "form-control"})
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="formbuttons">
+                    <div class="form-group col-md-3">
+                        <button class="btn btn-primary btn-block">Update</button>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <button class="btn btn-danger btn-block">Delete</button>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </form>
+</div>

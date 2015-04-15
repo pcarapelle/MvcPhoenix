@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CMCData" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblClient">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LegacyID" Type="Int32" />
+    <Property Name="GlobalClientID" Type="Int32" />
+    <Property Name="ClientCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CMCLocation" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="CustomerReference" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="CMCLongCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MSDS" Type="Boolean" />
+    <Property Name="TDS" Type="Boolean" />
+    <Property Name="COA" Type="Boolean" />
+    <Property Name="DocumentDirectory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MSDS_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TDS_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="COA_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SP_ServiceSummary" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Detail1" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Detail2" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Detail3" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Detail4" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Detail5" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="SP_RevDate" Type="DateTime" Precision="0" />
+    <Property Name="SP_CommValue" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SP_COARequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SP_TDSRequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SP_MSDSLanguage" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Freezable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SP_LabelLanguage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SP_Expedite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="BOLComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationDefault" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+    <Property Name="UserLevel" Type="Int32" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="CMCSQL03Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblClients" EntityType="Self.tblClient" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+  </EntityContainer>
+</Schema>
