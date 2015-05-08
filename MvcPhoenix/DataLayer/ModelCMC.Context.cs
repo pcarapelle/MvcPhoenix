@@ -25,9 +25,12 @@ namespace MvcPhoenix.DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<tblClient> tblClients { get; set; }
         public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblOrderItem> tblOrderItems { get; set; }
+        public virtual DbSet<tblState> tblStates { get; set; }
+        public virtual DbSet<tblDivision> tblDivisions { get; set; }
+        public virtual DbSet<tblCarrier> tblCarriers { get; set; }
         public virtual DbSet<tblOrderMaster> tblOrderMasters { get; set; }
+        public virtual DbSet<tblClient> tblClients { get; set; }
     }
 }

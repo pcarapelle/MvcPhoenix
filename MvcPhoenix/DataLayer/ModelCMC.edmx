@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CMCSQL03Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblCarrier">
+          <Key>
+            <PropertyRef Name="CarrierID" />
+          </Key>
+          <Property Name="CarrierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CarrierName" Type="nvarchar" MaxLength="10" />
+          <Property Name="LegacyID" Type="int" />
+          <Property Name="CMCLocation" Type="nvarchar" MaxLength="2" />
+        </EntityType>
         <EntityType Name="tblClient">
           <Key>
             <PropertyRef Name="ClientID" />
@@ -39,7 +48,24 @@
           <Property Name="SP_LabelLanguage" Type="nvarchar" MaxLength="50" />
           <Property Name="SP_Expedite" Type="nvarchar" MaxLength="255" />
           <Property Name="BOLComment" Type="nvarchar" MaxLength="4000" />
-          <Property Name="MoreComments" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="tblDivision">
+          <Key>
+            <PropertyRef Name="DivisionID" />
+          </Key>
+          <Property Name="DivisionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="Division" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillingGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="BillingCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="BusinessUnit" Type="nvarchar" MaxLength="25" />
+          <Property Name="Abbr" Type="nvarchar" MaxLength="5" />
+          <Property Name="WasteRate_OffSpec" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="WasteRate_Empty" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="Inactive" Type="bit" />
+          <Property Name="LegacyID" Type="int" />
+          <Property Name="Location_MDB" Type="nvarchar" MaxLength="2" />
+          <Property Name="Company_MDB" Type="nvarchar" MaxLength="25" />
         </EntityType>
         <EntityType Name="tblOrderItem">
           <Key>
@@ -174,8 +200,8 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="25" />
           <Property Name="Source" Type="nvarchar" MaxLength="40" />
           <Property Name="Fax" Type="nvarchar" MaxLength="20" />
-          <Property Name="Tracking#" Type="ntext" />
-          <Property Name="Special" Type="ntext" />
+          <Property Name="Tracking" Type="nvarchar" MaxLength="500" />
+          <Property Name="Special" Type="nvarchar" MaxLength="1000" />
           <Property Name="SpecialInternal" Type="nvarchar" MaxLength="255" />
           <Property Name="Lit" Type="bit" />
           <Property Name="Region" Type="nvarchar" MaxLength="10" />
@@ -286,6 +312,14 @@
           <Property Name="Location_MDB" Type="nvarchar" MaxLength="2" />
           <Property Name="Company_MDB" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StateName" Type="nvarchar" MaxLength="25" />
+          <Property Name="StateAbbr" Type="nvarchar" MaxLength="2" />
+        </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -301,51 +335,18 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="CMCSQL03ModelStoreContainer">
+          <EntitySet Name="tblCarrier" EntityType="Self.tblCarrier" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblClient" EntityType="Self.tblClient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDivision" EntityType="Self.tblDivision" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrderItem" EntityType="Self.tblOrderItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblOrderMaster" EntityType="Self.tblOrderMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblState" EntityType="Self.tblState" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CMCSQL03Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="tblClient">
-          <Key>
-            <PropertyRef Name="ClientID" />
-          </Key>
-          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LegacyID" Type="Int32" />
-          <Property Name="GlobalClientID" Type="Int32" />
-          <Property Name="ClientCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CMCLocation" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Name="CustomerReference" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
-          <Property Name="CMCLongCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MSDS" Type="Boolean" />
-          <Property Name="TDS" Type="Boolean" />
-          <Property Name="COA" Type="Boolean" />
-          <Property Name="DocumentDirectory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MSDS_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TDS_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="COA_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SP_ServiceSummary" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Detail1" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Detail2" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Detail3" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Detail4" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Detail5" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="SP_RevDate" Type="DateTime" Precision="0" />
-          <Property Name="SP_CommValue" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="SP_COARequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SP_TDSRequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SP_MSDSLanguage" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Freezable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SP_LabelLanguage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SP_Expedite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="BOLComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="MoreComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="tblUser">
           <Key>
             <PropertyRef Name="UserID" />
@@ -361,10 +362,13 @@
           <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="CMCSQL03Entities2" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblClients" EntityType="Self.tblClient" />
           <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
           <EntitySet Name="tblOrderItems" EntityType="CMCSQL03Model.tblOrderItem" />
+          <EntitySet Name="tblStates" EntityType="CMCSQL03Model.tblState" />
+          <EntitySet Name="tblDivisions" EntityType="CMCSQL03Model.tblDivision" />
+          <EntitySet Name="tblCarriers" EntityType="CMCSQL03Model.tblCarrier" />
           <EntitySet Name="tblOrderMasters" EntityType="CMCSQL03Model.tblOrderMaster" />
+          <EntitySet Name="tblClients" EntityType="CMCSQL03Model.tblClient" />
         </EntityContainer>
         <EntityType Name="tblOrderItem">
           <Key>
@@ -455,6 +459,41 @@
           <Property Name="Company_MDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location_MDB" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Name="StateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StateName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="StateAbbr" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblDivision">
+          <Key>
+            <PropertyRef Name="DivisionID" />
+          </Key>
+          <Property Name="DivisionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="Division" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillingGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BillingCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessUnit" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Abbr" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="WasteRate_OffSpec" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="WasteRate_Empty" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Inactive" Type="Boolean" />
+          <Property Name="LegacyID" Type="Int32" />
+          <Property Name="Location_MDB" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Company_MDB" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCarrier">
+          <Key>
+            <PropertyRef Name="CarrierID" />
+          </Key>
+          <Property Name="CarrierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CarrierName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LegacyID" Type="Int32" />
+          <Property Name="CMCLocation" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="tblOrderMaster">
           <Key>
             <PropertyRef Name="ORDERID" />
@@ -499,8 +538,8 @@
           <Property Name="Phone" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
           <Property Name="Source" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
           <Property Name="Fax" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Tracking_" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Special" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tracking" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Special" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="SpecialInternal" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Lit" Type="Boolean" />
           <Property Name="Region" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
@@ -611,49 +650,47 @@
           <Property Name="Location_MDB" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
           <Property Name="Company_MDB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="tblClient">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LegacyID" Type="Int32" />
+          <Property Name="GlobalClientID" Type="Int32" />
+          <Property Name="ClientCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ClientName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CMCLocation" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerReference" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CMCLongCustomer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MSDS" Type="Boolean" />
+          <Property Name="TDS" Type="Boolean" />
+          <Property Name="COA" Type="Boolean" />
+          <Property Name="DocumentDirectory" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MSDS_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TDS_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="COA_Folder" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SP_ServiceSummary" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Detail1" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Detail2" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Detail3" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Detail4" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Detail5" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="SP_RevDate" Type="DateTime" Precision="0" />
+          <Property Name="SP_CommValue" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SP_COARequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SP_TDSRequired" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SP_MSDSLanguage" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Freezable" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SP_LabelLanguage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SP_Expedite" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="BOLComment" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="CMCSQL03ModelStoreContainer" CdmEntityContainer="CMCSQL03Entities2">
-          <EntitySetMapping Name="tblClients">
-            <EntityTypeMapping TypeName="CMCSQL03Model.tblClient">
-              <MappingFragment StoreEntitySet="tblClient">
-                <ScalarProperty Name="MoreComments" ColumnName="MoreComments" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="LegacyID" ColumnName="LegacyID" />
-                <ScalarProperty Name="GlobalClientID" ColumnName="GlobalClientID" />
-                <ScalarProperty Name="ClientCode" ColumnName="ClientCode" />
-                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
-                <ScalarProperty Name="CMCLocation" ColumnName="CMCLocation" />
-                <ScalarProperty Name="CustomerReference" ColumnName="CustomerReference" />
-                <ScalarProperty Name="CMCLongCustomer" ColumnName="CMCLongCustomer" />
-                <ScalarProperty Name="MSDS" ColumnName="MSDS" />
-                <ScalarProperty Name="TDS" ColumnName="TDS" />
-                <ScalarProperty Name="COA" ColumnName="COA" />
-                <ScalarProperty Name="DocumentDirectory" ColumnName="DocumentDirectory" />
-                <ScalarProperty Name="MSDS_Folder" ColumnName="MSDS_Folder" />
-                <ScalarProperty Name="TDS_Folder" ColumnName="TDS_Folder" />
-                <ScalarProperty Name="COA_Folder" ColumnName="COA_Folder" />
-                <ScalarProperty Name="SP_ServiceSummary" ColumnName="SP_ServiceSummary" />
-                <ScalarProperty Name="SP_Detail1" ColumnName="SP_Detail1" />
-                <ScalarProperty Name="SP_Detail2" ColumnName="SP_Detail2" />
-                <ScalarProperty Name="SP_Detail3" ColumnName="SP_Detail3" />
-                <ScalarProperty Name="SP_Detail4" ColumnName="SP_Detail4" />
-                <ScalarProperty Name="SP_Detail5" ColumnName="SP_Detail5" />
-                <ScalarProperty Name="SP_RevDate" ColumnName="SP_RevDate" />
-                <ScalarProperty Name="SP_CommValue" ColumnName="SP_CommValue" />
-                <ScalarProperty Name="SP_COARequired" ColumnName="SP_COARequired" />
-                <ScalarProperty Name="SP_TDSRequired" ColumnName="SP_TDSRequired" />
-                <ScalarProperty Name="SP_MSDSLanguage" ColumnName="SP_MSDSLanguage" />
-                <ScalarProperty Name="SP_Freezable" ColumnName="SP_Freezable" />
-                <ScalarProperty Name="SP_LabelLanguage" ColumnName="SP_LabelLanguage" />
-                <ScalarProperty Name="SP_Expedite" ColumnName="SP_Expedite" />
-                <ScalarProperty Name="BOLComment" ColumnName="BOLComment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblUsers">
             <EntityTypeMapping TypeName="CMCSQL03Model.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
@@ -756,6 +793,44 @@
                 <ScalarProperty Name="CMCOrder" ColumnName="CMCOrder" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="CMCSQL03Model.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="StateAbbr" ColumnName="StateAbbr" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDivisions">
+            <EntityTypeMapping TypeName="CMCSQL03Model.tblDivision">
+              <MappingFragment StoreEntitySet="tblDivision">
+                <ScalarProperty Name="Company_MDB" ColumnName="Company_MDB" />
+                <ScalarProperty Name="Location_MDB" ColumnName="Location_MDB" />
+                <ScalarProperty Name="LegacyID" ColumnName="LegacyID" />
+                <ScalarProperty Name="Inactive" ColumnName="Inactive" />
+                <ScalarProperty Name="WasteRate_Empty" ColumnName="WasteRate_Empty" />
+                <ScalarProperty Name="WasteRate_OffSpec" ColumnName="WasteRate_OffSpec" />
+                <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+                <ScalarProperty Name="BusinessUnit" ColumnName="BusinessUnit" />
+                <ScalarProperty Name="BillingCode" ColumnName="BillingCode" />
+                <ScalarProperty Name="BillingGroup" ColumnName="BillingGroup" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="DivisionID" ColumnName="DivisionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCarriers">
+            <EntityTypeMapping TypeName="CMCSQL03Model.tblCarrier">
+              <MappingFragment StoreEntitySet="tblCarrier">
+                <ScalarProperty Name="CMCLocation" ColumnName="CMCLocation" />
+                <ScalarProperty Name="LegacyID" ColumnName="LegacyID" />
+                <ScalarProperty Name="CarrierName" ColumnName="CarrierName" />
+                <ScalarProperty Name="CarrierID" ColumnName="CarrierID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -872,7 +947,7 @@
                 <ScalarProperty Name="Lit" ColumnName="Lit" />
                 <ScalarProperty Name="SpecialInternal" ColumnName="SpecialInternal" />
                 <ScalarProperty Name="Special" ColumnName="Special" />
-                <ScalarProperty Name="Tracking_" ColumnName="Tracking#" />
+                <ScalarProperty Name="Tracking" ColumnName="Tracking" />
                 <ScalarProperty Name="Fax" ColumnName="Fax" />
                 <ScalarProperty Name="Source" ColumnName="Source" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -913,6 +988,42 @@
                 <ScalarProperty Name="ClientID" ColumnName="ClientID" />
                 <ScalarProperty Name="CMCORDER" ColumnName="CMCORDER" />
                 <ScalarProperty Name="ORDERID" ColumnName="ORDERID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblClients">
+            <EntityTypeMapping TypeName="CMCSQL03Model.tblClient">
+              <MappingFragment StoreEntitySet="tblClient">
+                <ScalarProperty Name="BOLComment" ColumnName="BOLComment" />
+                <ScalarProperty Name="SP_Expedite" ColumnName="SP_Expedite" />
+                <ScalarProperty Name="SP_LabelLanguage" ColumnName="SP_LabelLanguage" />
+                <ScalarProperty Name="SP_Freezable" ColumnName="SP_Freezable" />
+                <ScalarProperty Name="SP_MSDSLanguage" ColumnName="SP_MSDSLanguage" />
+                <ScalarProperty Name="SP_TDSRequired" ColumnName="SP_TDSRequired" />
+                <ScalarProperty Name="SP_COARequired" ColumnName="SP_COARequired" />
+                <ScalarProperty Name="SP_CommValue" ColumnName="SP_CommValue" />
+                <ScalarProperty Name="SP_RevDate" ColumnName="SP_RevDate" />
+                <ScalarProperty Name="SP_Detail5" ColumnName="SP_Detail5" />
+                <ScalarProperty Name="SP_Detail4" ColumnName="SP_Detail4" />
+                <ScalarProperty Name="SP_Detail3" ColumnName="SP_Detail3" />
+                <ScalarProperty Name="SP_Detail2" ColumnName="SP_Detail2" />
+                <ScalarProperty Name="SP_Detail1" ColumnName="SP_Detail1" />
+                <ScalarProperty Name="SP_ServiceSummary" ColumnName="SP_ServiceSummary" />
+                <ScalarProperty Name="COA_Folder" ColumnName="COA_Folder" />
+                <ScalarProperty Name="TDS_Folder" ColumnName="TDS_Folder" />
+                <ScalarProperty Name="MSDS_Folder" ColumnName="MSDS_Folder" />
+                <ScalarProperty Name="DocumentDirectory" ColumnName="DocumentDirectory" />
+                <ScalarProperty Name="COA" ColumnName="COA" />
+                <ScalarProperty Name="TDS" ColumnName="TDS" />
+                <ScalarProperty Name="MSDS" ColumnName="MSDS" />
+                <ScalarProperty Name="CMCLongCustomer" ColumnName="CMCLongCustomer" />
+                <ScalarProperty Name="CustomerReference" ColumnName="CustomerReference" />
+                <ScalarProperty Name="CMCLocation" ColumnName="CMCLocation" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientCode" ColumnName="ClientCode" />
+                <ScalarProperty Name="GlobalClientID" ColumnName="GlobalClientID" />
+                <ScalarProperty Name="LegacyID" ColumnName="LegacyID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

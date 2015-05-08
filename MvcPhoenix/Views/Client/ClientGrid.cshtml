@@ -1,0 +1,15 @@
+﻿@model MvcPhoenix.DataLayer.Client
+@{
+    WebGrid mygrid = new WebGrid(Model.ClientsForGrid, rowsPerPage: 5);
+}
+<div id="clientgrid" style="display:inline;">
+    @mygrid.GetHtml(columns: mygrid.Columns(
+    mygrid.Column("ClientID", header: "ID"),
+    mygrid.Column("ClientName", header: "Name"),
+    mygrid.Column("ClientCode",header:"Code"),
+    mygrid.Column("CMcLocation",header:"Location"),
+            mygrid.Column("CMcLongCustomer",header:"Long")
+            ))
+</div>
+
+

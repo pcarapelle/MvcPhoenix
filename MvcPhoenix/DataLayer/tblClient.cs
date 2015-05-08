@@ -44,6 +44,5 @@ namespace MvcPhoenix.DataLayer
         public string SP_LabelLanguage { get; set; }
         public string SP_Expedite { get; set; }
         public string BOLComment { get; set; }
-        public string MoreComments { get; set; }
     }
 }

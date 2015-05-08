@@ -54,7 +54,7 @@ namespace MvcPhoenix.DataLayer
         public string Phone { get; set; }
         public string Source { get; set; }
         public string Fax { get; set; }
-        public string Tracking_ { get; set; }
+        public string Tracking { get; set; }
         public string Special { get; set; }
         public string SpecialInternal { get; set; }
         public Nullable<bool> Lit { get; set; }

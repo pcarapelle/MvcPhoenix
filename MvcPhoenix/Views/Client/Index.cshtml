@@ -1,0 +1,167 @@
+﻿@model MvcPhoenix.DataLayer.Client
+@{
+    ViewBag.Title = "Index";
+}
+<h5>CMC Client Maintenance Example <small>(@Model.ClientCount active clients) (@Model.ClientArchiveCount archived clients)</small></h5>
+
+
+@using (Html.BeginForm("SearchForClient", "Client", FormMethod.Get, new { style = "background-color:white;" }))
+{
+    <div class="row">
+        <div class="col-md-2">
+            @Html.Label("Search for a client: ")
+        </div>
+        <div class="col-md-10">
+            @Html.TextBox("SearchString") <button type="submit" class="btn btn-xs">Search</button>
+            @Html.ActionLink("Add a new client", "NewClient", "Client", new { ClientID = -1 }, new { @class = "btn btn-xs" })
+            @ViewData["MessageSearchForm"]
+        </div>
+    </div>
+}
+
+
+
+@using (Html.BeginForm("Lookup", "Client", FormMethod.Get, new { style = "background-color:inherit;margin-top:5px;" }))
+{
+    <div class="row">
+        <div class="col-md-2">@Html.Label("Or select a client: ")</div>
+        <div class="col-md-10">
+            @Html.DropDownList("DDClientID")
+            <button type="submit" value="SetClient" class="btn btn-xs">Go</button>
+            @Html.ActionLink("Reset", "ResetSearch", "Client",null, new { @class = "btn btn-xs" })
+            <br />@ViewData["MessageLookupForm"]
+        </div>
+    </div>
+}
+<hr style="margin-top:4px;margin-bottom:4px;" />
+
+
+
+@using (Ajax.BeginForm("SaveClient04", new AjaxOptions
+{
+    UpdateTargetId = "savemessage",
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    OnSuccess = "saveSuccess('Hello')"
+}))
+{
+
+    <div id="savemessage">
+       
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.ClientID)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.ClientID, new { @readonly = "readonly", @class="form-control", style = "width:55px;margin-bottom:3px;" })</div>
+    </div>
+    <div class="row" style="display:none;">
+        <div class="col-md-2">@Html.Label("State (example)")</div>
+        <div class="col-md-10">@Html.DropDownList("DDLState", CMC01.misc.FillStateList(0))</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.Label("Divisions")</div>
+        <div class="col-md-10">@Html.DropDownList("DDLDivision", CMC01.misc.FillDivisionList(Model.ClientID), null, new { @class = "form-control", style = "width:300px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.LegacyID)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.LegacyID, new { @readonly = "readonly", @class = "form-control",style="Width:100px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.GlobalClientID)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.GlobalClientID, new { @class = "form-control", style = "width:50px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.ClientName)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.ClientName, new { @class = "form-control", style = "width:350px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.CustomerReference)</div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CustomerReference, new { @class = "form-control", style = "width:100px;" })
+            @Html.ValidationMessageFor(m => m.CustomerReference)
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.ClientCode)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.ClientCode, new { @class = "form-control", style = "width:100px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.CMCLocation)</div>
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.CMCLocation, CMC01.misc.CMCLocationList(), new { @class = "form-control",style="width:100px;" })
+          
+            @Html.ValidationMessageFor(m => m.CMCLocation)
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.CMCLongCustomer)</div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CMCLongCustomer, new { @class = "form-control", style = "width:400px;" })
+            @Html.ValidationMessageFor(m => m.CMCLongCustomer)
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.MSDS)</div>
+        <div class="col-md-10">@Html.CheckBoxFor(m => m.MSDS)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.TDS)</div>
+        <div class="col-md-10">@Html.CheckBoxFor(m => m.TDS)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.COA)</div>
+        <div class="col-md-10">@Html.CheckBoxFor(m => m.COA)</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.DocumentDirectory)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.DocumentDirectory, new {@class="form-control", style = "width:400px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.MSDS_Folder)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.MSDS_Folder, new { @class = "form-control", style = "width:400px;" })</div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">@Html.LabelFor(m => m.TDS_Folder)</div>
+        <div class="col-md-10">@Html.TextBoxFor(m => m.TDS_Folder, new { @class = "form-control", style = "width:400px;" })</div>
+    </div>
+     
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-10"></div>
+    </div>
+
+    <div class="row" style="display:inline;">
+        <button type="submit" name="Action" value="SaveClient" class="btn btn-success">SaveClient</button>&nbsp;&nbsp;&nbsp;&nbsp;
+        @Html.ActionLink("Cancel Save", "ResetSearch", "Client", null, new { @class = "btn btn-primary" })
+        @ViewData["DetailsHeader"]
+        @ViewData["Message1"]
+    </div>
+    
+    
+}
+
+@Html.ActionLink("Show Grid", "ShowGrid", "Client", new { YesNo = "Yes"}, new { @class = "btn btn-xs btn-primary" })
+@Html.ActionLink("Hide Grid", "ShowGrid", "Client", new { YesNo = "No" }, new { @class = "btn btn-xs btn-primary" })
+<div id="clientgrid" style="display:inline;">
+    @if (ViewData["PleaseShowGrid"] == "Yes") {
+         Html.RenderPartial("ClientGrid", Model);
+    }
+</div>
+
+
+<script type="text/javascript">
+
+    function saveSuccess(context) {
+        alert(context.get_data());
+
+    }
+
+
+</script>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

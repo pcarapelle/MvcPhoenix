@@ -5,10 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="295e5cac07b941fe979be06650da8ec2" Name="Diagram1">
-        <EntityTypeShape EntityType="CMCSQL03Model.tblClient" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CMCSQL03Model.tblUser" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CMCSQL03Model.tblOrderItem" Width="1.5" PointX="3.375" PointY="4.75" />
-        <EntityTypeShape EntityType="CMCSQL03Model.tblOrderMaster" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CMCSQL03Model.tblState" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CMCSQL03Model.tblDivision" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="CMCSQL03Model.tblCarrier" Width="1.5" PointX="7.375" PointY="2.5" />
+        <EntityTypeShape EntityType="CMCSQL03Model.tblOrderMaster" Width="1.5" PointX="5" PointY="0.5" />
+        <EntityTypeShape EntityType="CMCSQL03Model.tblClient" Width="1.5" PointX="0.625" PointY="0.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
