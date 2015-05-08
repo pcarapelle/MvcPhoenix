@@ -15,13 +15,15 @@ namespace MvcPhoenix.DataLayer
     public partial class tblOrderMaster
     {
         public int ORDERID { get; set; }
-        public Nullable<int> CMCORDER { get; set; }
         public Nullable<int> ClientID { get; set; }
-        public Nullable<int> DivisionID { get; set; }
-        public string CUSTORDNUM { get; set; }
+        public string Customer { get; set; }
+        public Nullable<int> CMCORDER { get; set; }
         public Nullable<int> WebOrderID { get; set; }
-        public string REFNUM { get; set; }
-        public string DIVISION { get; set; }
+        public string CMCLEGACYNUM { get; set; }
+        public string CUSTORDNUM { get; set; }
+        public string CUSTSAPNUM { get; set; }
+        public string CUSTREFNUM { get; set; }
+        public string ShipRef { get; set; }
         public string ORDERTYPE { get; set; }
         public Nullable<System.DateTime> ORDERDATE { get; set; }
         public string COMPANY { get; set; }
@@ -36,14 +38,6 @@ namespace MvcPhoenix.DataLayer
         public string EMAIL { get; set; }
         public string SALESREP { get; set; }
         public string SALES_Email { get; set; }
-        public string SALES_Dept { get; set; }
-        public string SALES_Terr { get; set; }
-        public string Sales_Phone { get; set; }
-        public string Sales_Fax { get; set; }
-        public string CSR { get; set; }
-        public string CSR_Email { get; set; }
-        public string MKTG { get; set; }
-        public string Distributor { get; set; }
         public string REQ { get; set; }
         public string REQ_PHONE { get; set; }
         public string REQ_fax { get; set; }
@@ -60,56 +54,20 @@ namespace MvcPhoenix.DataLayer
         public Nullable<bool> Lit { get; set; }
         public string Region { get; set; }
         public Nullable<bool> COA { get; set; }
+        public Nullable<bool> TDS { get; set; }
         public string CID { get; set; }
         public string CustACCT { get; set; }
         public string ACode { get; set; }
         public string ImportFile { get; set; }
-        public Nullable<System.DateTime> Import_dateline { get; set; }
+        public Nullable<System.DateTime> Importdateline { get; set; }
         public string Timing { get; set; }
         public string Volume { get; set; }
-        public string PONumber { get; set; }
-        public string FollowUp { get; set; }
-        public string CustOrderType { get; set; }
-        public Nullable<System.DateTime> EMNRequestDate { get; set; }
-        public Nullable<int> EMNTotalItems { get; set; }
-        public string EMNReqName { get; set; }
-        public string PickZone { get; set; }
-        public string BillTo_COMPANY { get; set; }
-        public string BillTo_STREET { get; set; }
-        public string BillTo_STREET2 { get; set; }
-        public string BillTo_STREET3 { get; set; }
-        public string BillTo_CITY { get; set; }
-        public string BillTo_STATE { get; set; }
-        public string BillTo_ZIP { get; set; }
-        public string BillTo_Country { get; set; }
-        public string BillTo_Attention { get; set; }
-        public string Misc1 { get; set; }
-        public string Misc2 { get; set; }
-        public string SAPNUM { get; set; }
-        public string CMCLEGACYNUM { get; set; }
-        public Nullable<int> CMCLEGACYNUM_INTEGER { get; set; }
-        public Nullable<bool> ApprovalNeeded { get; set; }
-        public string ApprovedBy { get; set; }
-        public Nullable<System.DateTime> ApprovedByDate { get; set; }
-        public string Misc1_bak { get; set; }
-        public string Misc2_bak { get; set; }
-        public Nullable<System.DateTime> ImportTimestamp { get; set; }
-        public string CMCLocation { get; set; }
-        public string CUSTOMERold { get; set; }
-        public string LotusNotesRef { get; set; }
-        public Nullable<bool> Restricted { get; set; }
-        public string Approver { get; set; }
-        public Nullable<int> ExternalID { get; set; }
-        public Nullable<bool> BlackList { get; set; }
-        public Nullable<System.DateTime> ISPOrderDate { get; set; }
-        public string ISPBU { get; set; }
-        public string MarketingManager { get; set; }
-        public string Salesman { get; set; }
-        public string Department { get; set; }
-        public string ExportFileName { get; set; }
-        public Nullable<System.DateTime> ExportFileDate { get; set; }
-        public string Div { get; set; }
-        public Nullable<bool> TechData { get; set; }
+        public Nullable<bool> SampleRack { get; set; }
+        public string CMCUser { get; set; }
+        public string CustomerReference { get; set; }
+        public string DIVISION { get; set; }
+        public string BusARea { get; set; }
+        public Nullable<int> TotalOrderWeight { get; set; }
         public string SPSTaxID { get; set; }
         public string SPSCurrency { get; set; }
         public string SPSShippedWt { get; set; }
@@ -124,46 +82,14 @@ namespace MvcPhoenix.DataLayer
         public string InvoiceCity { get; set; }
         public string InvoiceStateProv { get; set; }
         public string InvoicePostalCode { get; set; }
+        public string InvoiceCountry { get; set; }
         public string InvoicePhone { get; set; }
-        public string ISPVCPRating { get; set; }
-        public Nullable<bool> Rush { get; set; }
-        public Nullable<bool> Return { get; set; }
-        public string Location { get; set; }
-        public string BillingGroup { get; set; }
-        public string Test { get; set; }
-        public string Application { get; set; }
-        public Nullable<bool> Kits { get; set; }
-        public Nullable<bool> RegulatoryHold { get; set; }
-        public string ShipFromLocation { get; set; }
-        public string ShipFromLocationContact { get; set; }
-        public string EMNOrderType { get; set; }
-        public Nullable<System.DateTime> EMNApprovedDate { get; set; }
-        public Nullable<System.DateTime> EMNDeliveryDate { get; set; }
-        public string EMNBO { get; set; }
-        public string EMNChargeCode { get; set; }
-        public string EMNShipFromPlant { get; set; }
-        public string EMNCustRep1 { get; set; }
-        public string EMNCustRep2 { get; set; }
-        public string EMNCustRep3 { get; set; }
-        public string EMNReqRegion { get; set; }
-        public string EMNReqCarrier { get; set; }
-        public string CustDelivNum { get; set; }
-        public string CustSAPNum { get; set; }
-        public Nullable<bool> CSRFee { get; set; }
-        public string BOLNote { get; set; }
-        public string BillingCode { get; set; }
-        public string SalesCode { get; set; }
-        public Nullable<bool> Approved { get; set; }
-        public string ShipRef { get; set; }
-        public string CMCUser { get; set; }
-        public string BusARea { get; set; }
-        public Nullable<int> TotalOrderWeight { get; set; }
+        public string CustOrderType { get; set; }
         public Nullable<System.DateTime> CustRequestDate { get; set; }
         public Nullable<System.DateTime> ApprovalDate { get; set; }
         public Nullable<System.DateTime> RequestedDeliveryDate { get; set; }
         public Nullable<int> CustTotalItems { get; set; }
+        public string CustRequestedCarrier { get; set; }
         public Nullable<int> LegacyID { get; set; }
-        public string Location_MDB { get; set; }
-        public string Company_MDB { get; set; }
     }
 }

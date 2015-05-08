@@ -26,11 +26,18 @@ namespace MvcPhoenix.DataLayer
         }
     
         public virtual DbSet<tblUser> tblUsers { get; set; }
-        public virtual DbSet<tblOrderItem> tblOrderItems { get; set; }
         public virtual DbSet<tblState> tblStates { get; set; }
         public virtual DbSet<tblDivision> tblDivisions { get; set; }
         public virtual DbSet<tblCarrier> tblCarriers { get; set; }
-        public virtual DbSet<tblOrderMaster> tblOrderMasters { get; set; }
         public virtual DbSet<tblClient> tblClients { get; set; }
+        public virtual DbSet<tblCountry> tblCountries { get; set; }
+        public virtual DbSet<tblEndUse> tblEndUses { get; set; }
+        public virtual DbSet<tblOrderSource> tblOrderSources { get; set; }
+        public virtual DbSet<tblOrderType> tblOrderTypes { get; set; }
+        public virtual DbSet<tblBOLComment> tblBOLComments { get; set; }
+        public virtual DbSet<tblClientContact> tblClientContacts { get; set; }
+        public virtual DbSet<tblPreferredCarrierList> tblPreferredCarrierLists { get; set; }
+        public virtual DbSet<tblOrderItem> tblOrderItems { get; set; }
+        public virtual DbSet<tblOrderMaster> tblOrderMasters { get; set; }
     }
 }
